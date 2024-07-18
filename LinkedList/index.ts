@@ -1,4 +1,4 @@
-class ListNode {
+export class ListNode {
   value: any;
   next: ListNode | null;
   constructor(value: any) {
@@ -7,7 +7,7 @@ class ListNode {
   }
 }
 
-class LinkedList {
+export class LinkedList {
   head: ListNode | null;
   size: number = 0;
   constructor(value: any) {
@@ -50,7 +50,7 @@ class LinkedList {
 
   insert(pos: number, value: any) {
     if (pos < 0) {
-      console.log('Index Is Out Of Range.');
+      console.log("Index Is Out Of Range.");
     } else if (pos == 0) {
       this.prepend(value);
       return;
@@ -58,7 +58,7 @@ class LinkedList {
       this.prepend(value);
       return;
     } else if (pos > this.size) {
-      console.log('Index Is Out Of Range.');
+      console.log("Index Is Out Of Range.");
       return;
     } else {
       // pos = 3
@@ -75,14 +75,14 @@ class LinkedList {
   }
   prepop(): void | any {
     if (this.isEmpty()) {
-      console.log('The Size is 0 --> index is out Of Range');
+      console.log("The Size is 0 --> index is out Of Range");
       return;
     }
     this.head = this.head!.next;
     this.size--;
   }
 
-  pop(): ListNode | void {
+  pop(): number | void {
     let current = this.head;
 
     if (this.size == 2) {
@@ -98,6 +98,7 @@ class LinkedList {
         current.next = null;
       }
     }
+    return removebleNode?.value;
 
     this.size--;
     return removebleNode?.value;
@@ -105,13 +106,13 @@ class LinkedList {
 
   removeAt(pos: number): any {
     if (pos < 0) {
-      console.log('Index Is Out Of Range.');
+      console.log("Index Is Out Of Range.");
       return;
     } else if (pos == 0) {
       this.prepop();
       return;
     } else if (pos >= this.size) {
-      console.log('Index Is Out Of Range.');
+      console.log("Index Is Out Of Range.");
       return;
     } else if (pos + 1 == this.size) {
       this.pop();
@@ -133,7 +134,7 @@ class LinkedList {
 
   remove(value: any): number | void {
     if (this.isEmpty()) {
-      console.log('List Is Empty.');
+      console.log("List Is Empty.");
       return;
     }
 
@@ -158,7 +159,7 @@ class LinkedList {
     if (this.size == 1) {
       return;
     } else if (this.isEmpty()) {
-      console.log('List Is Empty');
+      console.log("List Is Empty");
       return;
     } else {
       let current = this.head;
@@ -177,18 +178,18 @@ class LinkedList {
   }
 
   print(): void {
-    let list = '[';
+    let list = "[";
 
     let current = this.head;
 
     while (current) {
-      list += current.value + ',';
+      list += current.value + ",";
       current = current.next;
     }
     list = list.substring(0, list.length - 1);
-    list += ']';
+    list += "]";
     if (this.isEmpty()) {
-      list = '[]';
+      list = "[]";
     }
     console.log(list);
   }
@@ -230,7 +231,7 @@ list.reverse();
 console.log(list.remove(15));
 list.print();
 
-class LinkedList_Tail extends LinkedList {
+export class LinkedList_Tail extends LinkedList {
   tail: ListNode | undefined | null;
   constructor(value: any) {
     super(value);
@@ -247,14 +248,16 @@ class LinkedList_Tail extends LinkedList {
     last!.next = node;
     this.tail = node;
   }
-  pop(): void | ListNode {
+  pop(): void | number {
     let current = this.head;
     while (current?.next?.next) {
       current = current.next;
     }
     // console.log(current);
+    const lastValue = this.tail?.value;
     current!.next = null;
     this.tail = current;
+    return lastValue;
   }
 }
 

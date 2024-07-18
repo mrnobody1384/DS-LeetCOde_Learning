@@ -1,10 +1,13 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LinkedList_Tail = exports.LinkedList = exports.ListNode = void 0;
 class ListNode {
     constructor(value) {
         this.value = value;
         this.next = null;
     }
 }
+exports.ListNode = ListNode;
 class LinkedList {
     constructor(value) {
         this.size = 0;
@@ -47,7 +50,7 @@ class LinkedList {
     }
     insert(pos, value) {
         if (pos < 0) {
-            console.log('Index Is Out Of Range.');
+            console.log("Index Is Out Of Range.");
         }
         else if (pos == 0) {
             this.prepend(value);
@@ -58,7 +61,7 @@ class LinkedList {
             return;
         }
         else if (pos > this.size) {
-            console.log('Index Is Out Of Range.');
+            console.log("Index Is Out Of Range.");
             return;
         }
         else {
@@ -76,7 +79,7 @@ class LinkedList {
     }
     prepop() {
         if (this.isEmpty()) {
-            console.log('The Size is 0 --> index is out Of Range');
+            console.log("The Size is 0 --> index is out Of Range");
             return;
         }
         this.head = this.head.next;
@@ -98,12 +101,13 @@ class LinkedList {
                 current.next = null;
             }
         }
+        return removebleNode === null || removebleNode === void 0 ? void 0 : removebleNode.value;
         this.size--;
         return removebleNode === null || removebleNode === void 0 ? void 0 : removebleNode.value;
     }
     removeAt(pos) {
         if (pos < 0) {
-            console.log('Index Is Out Of Range.');
+            console.log("Index Is Out Of Range.");
             return;
         }
         else if (pos == 0) {
@@ -111,7 +115,7 @@ class LinkedList {
             return;
         }
         else if (pos >= this.size) {
-            console.log('Index Is Out Of Range.');
+            console.log("Index Is Out Of Range.");
             return;
         }
         else if (pos + 1 == this.size) {
@@ -134,7 +138,7 @@ class LinkedList {
     remove(value) {
         var _a;
         if (this.isEmpty()) {
-            console.log('List Is Empty.');
+            console.log("List Is Empty.");
             return;
         }
         let current = this.head;
@@ -159,7 +163,7 @@ class LinkedList {
             return;
         }
         else if (this.isEmpty()) {
-            console.log('List Is Empty');
+            console.log("List Is Empty");
             return;
         }
         else {
@@ -176,20 +180,21 @@ class LinkedList {
         }
     }
     print() {
-        let list = '[';
+        let list = "[";
         let current = this.head;
         while (current) {
-            list += current.value + ',';
+            list += current.value + ",";
             current = current.next;
         }
         list = list.substring(0, list.length - 1);
-        list += ']';
+        list += "]";
         if (this.isEmpty()) {
-            list = '[]';
+            list = "[]";
         }
         console.log(list);
     }
 }
+exports.LinkedList = LinkedList;
 const list = new LinkedList(10);
 list.prepend(5);
 list.prepend(0);
@@ -238,16 +243,19 @@ class LinkedList_Tail extends LinkedList {
         this.tail = node;
     }
     pop() {
-        var _a;
+        var _a, _b;
         let current = this.head;
         while ((_a = current === null || current === void 0 ? void 0 : current.next) === null || _a === void 0 ? void 0 : _a.next) {
             current = current.next;
         }
         // console.log(current);
+        const lastValue = (_b = this.tail) === null || _b === void 0 ? void 0 : _b.value;
         current.next = null;
         this.tail = current;
+        return lastValue;
     }
 }
+exports.LinkedList_Tail = LinkedList_Tail;
 const tail_list = new LinkedList_Tail(0);
 tail_list.append(5);
 tail_list.append(10);
