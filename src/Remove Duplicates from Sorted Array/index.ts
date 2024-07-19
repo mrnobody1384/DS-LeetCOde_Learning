@@ -33,5 +33,5 @@ return map.size
 
 
 
- let nums = [2,2,1]
+const nums_ = [2,2,1]
 removeDuplicates(nums)
