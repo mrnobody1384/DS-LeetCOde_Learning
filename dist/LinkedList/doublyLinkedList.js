@@ -2,15 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const _1 = require(".");
 class DoublyNode extends _1.ListNode {
+    previous;
     constructor(value) {
         super(value);
         this.previous = null;
     }
 }
 class DoublyLinkedList extends _1.LinkedList_Tail {
+    tail = null;
+    head;
     constructor(value) {
         super(value);
-        this.tail = null;
         const newNode = new DoublyNode(value);
         this.head = newNode;
         this.tail = newNode;
@@ -40,7 +42,7 @@ class DoublyLinkedList extends _1.LinkedList_Tail {
             this.tail.next = null;
         }
         this.size--;
-        return removebleNode === null || removebleNode === void 0 ? void 0 : removebleNode.value;
+        return removebleNode?.value;
     }
 }
 const doublyList = new DoublyLinkedList(5);

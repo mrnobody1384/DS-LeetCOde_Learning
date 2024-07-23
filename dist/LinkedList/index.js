@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LinkedList_Tail = exports.LinkedList = exports.ListNode = void 0;
 class ListNode {
+    value;
+    next;
     constructor(value) {
         this.value = value;
         this.next = null;
@@ -9,8 +11,9 @@ class ListNode {
 }
 exports.ListNode = ListNode;
 class LinkedList {
+    head;
+    size = 0;
     constructor(value) {
-        this.size = 0;
         const node = new ListNode(value);
         this.head = node;
         this.size++;
@@ -41,7 +44,7 @@ class LinkedList {
         }
         else {
             let current = this.head;
-            while (current === null || current === void 0 ? void 0 : current.next) {
+            while (current?.next) {
                 current = current.next;
             }
             current.next = node;
@@ -86,7 +89,6 @@ class LinkedList {
         this.size--;
     }
     pop() {
-        var _a, _b;
         let current = this.head;
         if (this.size == 2) {
             this.head.next = null;
@@ -94,16 +96,16 @@ class LinkedList {
             return;
         }
         let removebleNode;
-        while ((_a = current === null || current === void 0 ? void 0 : current.next) === null || _a === void 0 ? void 0 : _a.next) {
+        while (current?.next?.next) {
             current = current.next;
-            if (((_b = current === null || current === void 0 ? void 0 : current.next) === null || _b === void 0 ? void 0 : _b.next) == null) {
+            if (current?.next?.next == null) {
                 removebleNode = current.next;
                 current.next = null;
             }
         }
-        return removebleNode === null || removebleNode === void 0 ? void 0 : removebleNode.value;
+        return removebleNode?.value;
         this.size--;
-        return removebleNode === null || removebleNode === void 0 ? void 0 : removebleNode.value;
+        return removebleNode?.value;
     }
     removeAt(pos) {
         if (pos < 0) {
@@ -128,15 +130,14 @@ class LinkedList {
                 console.log(i);
                 current = current.next;
             }
-            const removebleNode = current === null || current === void 0 ? void 0 : current.next;
+            const removebleNode = current?.next;
             current.next = removebleNode.next;
             this.size--;
-            return removebleNode === null || removebleNode === void 0 ? void 0 : removebleNode.value;
+            return removebleNode?.value;
             // console.log('Its New List -->', newList.print());
         }
     }
     remove(value) {
-        var _a;
         if (this.isEmpty()) {
             console.log("List Is Empty.");
             return;
@@ -144,8 +145,8 @@ class LinkedList {
         let current = this.head;
         let findedNode;
         for (let i = 0; i < this.size; i++) {
-            if (((_a = current === null || current === void 0 ? void 0 : current.next) === null || _a === void 0 ? void 0 : _a.value) == value) {
-                let removebleNode = current === null || current === void 0 ? void 0 : current.next;
+            if (current?.next?.value == value) {
+                let removebleNode = current?.next;
                 current.next = removebleNode.next;
                 return i + 1;
             }
@@ -170,7 +171,7 @@ class LinkedList {
             let current = this.head;
             let perv = null;
             while (current) {
-                let next = current === null || current === void 0 ? void 0 : current.next;
+                let next = current?.next;
                 current.next = perv;
                 perv = current;
                 current = next;
@@ -227,6 +228,7 @@ list.reverse();
 console.log(list.remove(15));
 list.print();
 class LinkedList_Tail extends LinkedList {
+    tail;
     constructor(value) {
         super(value);
         if (this.head == null) {
@@ -243,13 +245,12 @@ class LinkedList_Tail extends LinkedList {
         this.tail = node;
     }
     pop() {
-        var _a, _b;
         let current = this.head;
-        while ((_a = current === null || current === void 0 ? void 0 : current.next) === null || _a === void 0 ? void 0 : _a.next) {
+        while (current?.next?.next) {
             current = current.next;
         }
         // console.log(current);
-        const lastValue = (_b = this.tail) === null || _b === void 0 ? void 0 : _b.value;
+        const lastValue = this.tail?.value;
         current.next = null;
         this.tail = current;
         return lastValue;

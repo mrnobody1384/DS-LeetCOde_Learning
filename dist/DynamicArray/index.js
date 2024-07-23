@@ -1,5 +1,8 @@
 "use strict";
 class DynamicArray {
+    size = 0;
+    capacity = 0;
+    data;
     expo(expon) {
         return Math.pow(2, expon);
     }
@@ -22,8 +25,6 @@ class DynamicArray {
     }
     decreaseCap() { }
     constructor(...values) {
-        this.size = 0;
-        this.capacity = 0;
         this.size = values.length;
         this.increaseCap(undefined);
         this.data = new Array(this.capacity);
