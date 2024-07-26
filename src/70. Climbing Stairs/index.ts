@@ -1,4 +1,12 @@
 function climbStairs(n: number): number {
-    let result = 0
-    return result
-};
+return 1
+    }
+    // مثال{}
+   
+    
+
+
+
+
+let nnn = 4;
+console.log(climbStairs(nnn))
